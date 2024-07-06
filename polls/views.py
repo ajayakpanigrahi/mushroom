@@ -45,7 +45,9 @@ def index_func(request):
                    'veil-color': int(veilColor),'ring-number': int(ringNumber),'ring-type': int(ringType),
                    'spore-print-color': int(sporePrintColor),'population': int(pop),'habitat': int(hab)}
 
-            df = df.append(df2, ignore_index=True)
+            ##df = df.append(df2, ignore_index=True)
+            df2 = pd.DataFrame.from_records(df2, index=['1'])
+            df = pd.concat([df, df2])
             # load the model from disk
             filename = 'polls/MushsPCA.pickle'
             pca = pickle.load(open(filename, 'rb'))
